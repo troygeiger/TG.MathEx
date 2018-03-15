@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("TG.MathEx")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Provides SizeD, PointD and RectangleD for double values. Also adds other useful geometry functions and Robert Penner's easing equations.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("TG.MathEx")]
