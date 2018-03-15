@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TG.MathEx
 {
-	public static class Vectors
+	public static class Geometry
 	{
 		public static PointD GetIntersection(PointD L1P1, PointD L1P2, PointD L2P1, PointD L2P2)
 		{
@@ -187,15 +187,15 @@ namespace TG.MathEx
 
 		public static void ThreePointCircle(PointD A, PointD B, PointD C, out PointD center, out double radius)
 		{
-			PointD abMid = MathEx.PlotPoint(MathEx.GetAngle(A, B), A, MathEx.Distance(A, B) / 2);
-			PointD bcMid = MathEx.PlotPoint(MathEx.GetAngle(B, C), B, MathEx.Distance(B, C) / 2);
+			PointD abMid = PlotPoint(GetAngle(A, B), A, Distance(A, B) / 2);
+			PointD bcMid = PlotPoint(GetAngle(B, C), B, Distance(B, C) / 2);
 			//PointD caMid = MathEx.PlotPoint(MathEx.GetAngle(C, A), C, MathEx.GetLength(C, A) / 2);
 
-			double abPerp = MathEx.ValidateDegreeAngle(MathEx.GetAngle(A, B) + 90);
-			double bcPerp = MathEx.ValidateDegreeAngle(MathEx.GetAngle(B, C) + 90);
+			double abPerp = ValidateDegreeAngle(GetAngle(A, B) + 90);
+			double bcPerp = ValidateDegreeAngle(GetAngle(B, C) + 90);
 			//double caPerp = MathEx.ValidateDegreeAngle(MathEx.GetAngle(C, A) + 90);
 
-			PointD abbcInt = MathEx.GetIntersection(abMid, MathEx.PlotPoint(abPerp, abMid, 1), bcMid, MathEx.PlotPoint(bcPerp, bcMid, 1));
+			PointD abbcInt = GetIntersection(abMid, PlotPoint(abPerp, abMid, 1), bcMid, PlotPoint(bcPerp, bcMid, 1));
 			//PointD bccaInt = MathEx.GetIntersection(bcMid, MathEx.PlotPoint(bcPerp, bcMid, 1), caMid, MathEx.PlotPoint(caPerp, caMid, 1));
 			//PointD caabInt = MathEx.GetIntersection(caMid, MathEx.PlotPoint(caPerp, caMid, 1), abMid, MathEx.PlotPoint(abPerp, abMid, 1));
 
@@ -226,12 +226,12 @@ namespace TG.MathEx
 			double refAngle = GetRadians(refPoint, endPoint);
 			foreach (PointD pnt in points)
 			{
-				double pWorldRad = MathEx.GetRadians(refPoint, pnt);
-				double theta = MathEx.ValidateRadianAngle(pWorldRad - refAngle);
-				double pLen = MathEx.Distance(refPoint, pnt);
+				double pWorldRad = GetRadians(refPoint, pnt);
+				double theta = ValidateRadianAngle(pWorldRad - refAngle);
+				double pLen = Distance(refPoint, pnt);
 				double rightLen = Math.Sin(theta) * pLen;
-				double rightWorldA = MathEx.ValidateRadianAngle(pWorldRad + (Math.PI - theta - (Math.PI / 2)) - Math.PI);
-				mpoints[pindex] = MathEx.PlotPointFromRadians(rightWorldA, pnt, rightLen * 2);
+				double rightWorldA = ValidateRadianAngle(pWorldRad + (Math.PI - theta - (Math.PI / 2)) - Math.PI);
+				mpoints[pindex] = PlotPointFromRadians(rightWorldA, pnt, rightLen * 2);
 				pindex++;
 			}
 			return mpoints;
