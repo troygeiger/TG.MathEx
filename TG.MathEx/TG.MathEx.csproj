@@ -43,5 +43,18 @@
     <Compile Include="RectangleD.cs" />
     <Compile Include="SizeD.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="TG.MathEx.nuspec" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if "$(ConfigurationName)" == "Release" (
+if EXISTS nuget.exe (
+cd $(ProjectDir)
+nuget.exe pack $(ProjectFileName) -Prop Configuration=Release
+nuget.exe push -verbosity detailed -source https://api.nuget.org/v3/index.json TG.MathEx.*.nupkg
+del TG.MathEx.*.nupkg
+)
+)</PostBuildEvent>
+  </PropertyGroup>
 </Project>

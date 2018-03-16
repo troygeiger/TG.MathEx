@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("TG.MathEx")]
 [assembly: AssemblyDescription("Provides SizeD, PointD and RectangleD for double values. Also adds other useful geometry functions and Robert Penner's easing equations.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Troy Geiger")]
 [assembly: AssemblyProduct("TG.MathEx")]
-[assembly: AssemblyCopyright("Copyright ©  2018")]
+[assembly: AssemblyCopyright("Copyright © Troy Geiger 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
