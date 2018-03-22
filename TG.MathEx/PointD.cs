@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TG
+namespace TG.MathEx
 {
 	public struct PointD
 	{

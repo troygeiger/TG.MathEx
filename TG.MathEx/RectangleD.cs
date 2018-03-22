@@ -4,7 +4,7 @@ using System.Text;
 using System.ComponentModel;
 using System.Globalization;
 
-namespace TG
+namespace TG.MathEx
 {
 	public struct RectangleD
 	{

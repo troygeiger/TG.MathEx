@@ -36,7 +36,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Easing.cs" />
+    <Compile Include="Easing\Back.cs" />
+    <Compile Include="Easing\Bounce.cs" />
+    <Compile Include="Easing\Circular.cs" />
+    <Compile Include="Easing\Cubic.cs" />
+    <Compile Include="Easing\Elastic.cs" />
+    <Compile Include="Easing\Exponential.cs" />
+    <Compile Include="Easing\Linear.cs" />
+    <Compile Include="Easing\Quadratic.cs" />
+    <Compile Include="Easing\Quartic.cs" />
+    <Compile Include="Easing\Quintic.cs" />
+    <Compile Include="Easing\Sine.cs" />
     <Compile Include="Geometry.cs" />
     <Compile Include="PointD.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -44,12 +54,14 @@
     <Compile Include="SizeD.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="TG.MathEx.nuspec" />
+    <None Include="TG.MathEx.nuspec">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if "$(ConfigurationName)" == "Release" (
-if EXISTS nuget.exe (
+if EXIST $(ProjectDir)nuget.exe (
 cd $(ProjectDir)
 nuget.exe pack $(ProjectFileName) -Prop Configuration=Release
 nuget.exe push -verbosity detailed -source https://api.nuget.org/v3/index.json TG.MathEx.*.nupkg
