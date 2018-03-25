@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TG.MathEx")]
-[assembly: AssemblyDescription("Provides SizeD, PointD and RectangleD for double values. Also adds other useful geometry functions and Robert Penner's easing equations.")]
+[assembly: AssemblyTitle("TestApp")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Troy Geiger")]
-[assembly: AssemblyProduct("TG.MathEx")]
-[assembly: AssemblyCopyright("Copyright © Troy Geiger 2018")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("TestApp")]
+[assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("8fca8923-1c70-4c31-bf41-95b9382d07e7")]
+[assembly: Guid("d19bcab3-6703-46e3-9382-8d0ee6abb409")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.3.0")]
-[assembly: AssemblyFileVersion("1.0.3.0")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]

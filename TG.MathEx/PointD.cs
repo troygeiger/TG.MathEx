@@ -48,27 +48,27 @@ namespace TG.MathEx
 			set { _y = value; }
 		}
 
-		public static implicit operator System.Drawing.PointF(PointD point)
-		{
-			return new System.Drawing.PointF((float)point._x, (float)point._y);
-		}
+        public static explicit operator System.Drawing.PointF(PointD point)
+        {
+            return new System.Drawing.PointF((float)point._x, (float)point._y);
+        }
 
-		public static implicit operator System.Drawing.Point(PointD point)
-		{
-			return new System.Drawing.Point(Convert.ToInt32(point.X), Convert.ToInt32(point.Y));
-		}
+        public static explicit operator System.Drawing.Point(PointD point)
+        {
+            return new System.Drawing.Point(Convert.ToInt32(point.X), Convert.ToInt32(point.Y));
+        }
 
-		public static implicit operator PointD(System.Drawing.PointF point)
-		{
-			return new PointD(point);
-		}
+        public static explicit operator PointD(System.Drawing.PointF point)
+        {
+            return new PointD(point);
+        }
 
-		public static implicit operator PointD(System.Drawing.Point point)
-		{
-			return new PointD(point);
-		}
+        public static explicit operator PointD(System.Drawing.Point point)
+        {
+            return new PointD(point);
+        }
 
-		public static PointD[] Cast(System.Drawing.PointF[] points)
+        public static PointD[] Cast(System.Drawing.PointF[] points)
 		{
 			PointD[] result = new PointD[points.Length];
 			for (int i = 0; i < points.Length; i++)

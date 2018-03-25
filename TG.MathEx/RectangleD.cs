@@ -286,17 +286,17 @@ namespace TG.MathEx
 			return !(left == right);
 		}
 
-		public static implicit operator RectangleD(System.Drawing.Rectangle rect)
+		public static explicit operator RectangleD(System.Drawing.Rectangle rect)
 		{
 			return new RectangleD((PointD)rect.Location, (SizeD)rect.Size);
 		}
 
-		public static implicit operator System.Drawing.Rectangle(RectangleD rect)
+		public static explicit operator System.Drawing.Rectangle(RectangleD rect)
 		{
 			return new System.Drawing.Rectangle((System.Drawing.Point)rect.Location, (System.Drawing.Size)rect.Size);
 		}
 
-		public static implicit operator System.Drawing.RectangleF(RectangleD rect)
+		public static explicit operator System.Drawing.RectangleF(RectangleD rect)
 		{
 			return new System.Drawing.RectangleF((float)rect.X, (float)rect.Y, (float)rect.Width, (float)rect.Height);
 		}
