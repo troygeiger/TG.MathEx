@@ -1,9 +1,13 @@
-﻿// These easing functions are based on the Java implementation at https://github.com/jesusgollonet/processing-penner-easing 
+﻿using System;
+
+// These easing functions are based on the Java implementation at https://github.com/jesusgollonet/processing-penner-easing 
 namespace TG.MathEx.Easing
 {
-    public static class Quadratic
+    /// <summary>
+    /// Provides circular easing functions
+    /// </summary>
+    public static class Circular
     {
-
         /// <summary>
         /// Easing function
         /// </summary>
@@ -14,7 +18,7 @@ namespace TG.MathEx.Easing
         /// <returns>Returns the value between the begin and change based on the time and duration.</returns>
         public static float EaseIn(float time, float begin, float change, float duration)
         {
-            return change * (time /= duration) * time + begin;
+            return -change * ((float)Math.Sqrt(1 - (time /= duration) * time) - 1) + begin;
         }
 
         /// <summary>
@@ -27,7 +31,7 @@ namespace TG.MathEx.Easing
         /// <returns>Returns the value between the begin and change based on the time and duration.</returns>
         public static float EaseOut(float time, float begin, float change, float duration)
         {
-            return -change * (time /= duration) * (time - 2) + begin;
+            return change * (float)Math.Sqrt(1 - (time = time / duration - 1) * time) + begin;
         }
 
         /// <summary>
@@ -40,8 +44,8 @@ namespace TG.MathEx.Easing
         /// <returns>Returns the value between the begin and change based on the time and duration.</returns>
         public static float EaseInOut(float time, float begin, float change, float duration)
         {
-            if ((time /= duration / 2) < 1) return change / 2 * time * time + begin;
-            return -change / 2 * ((--time) * (time - 2) - 1) + begin;
+            if ((time /= duration / 2) < 1) return -change / 2 * ((float)Math.Sqrt(1 - time * time) - 1) + begin;
+            return change / 2 * ((float)Math.Sqrt(1 - (time -= 2) * time) + 1) + begin;
         }
 
     }

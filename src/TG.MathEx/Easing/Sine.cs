@@ -5,7 +5,9 @@ using System.Text;
 // These easing functions are based on the Java implementation at https://github.com/jesusgollonet/processing-penner-easing 
 namespace TG.MathEx.Easing
 {
-
+    /// <summary>
+    /// Provides sine easing functions
+    /// </summary>
     public static class Sine
     {
 

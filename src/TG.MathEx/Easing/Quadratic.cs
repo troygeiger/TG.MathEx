@@ -1,9 +1,10 @@
-﻿using System;
-
-// These easing functions are based on the Java implementation at https://github.com/jesusgollonet/processing-penner-easing 
+﻿// These easing functions are based on the Java implementation at https://github.com/jesusgollonet/processing-penner-easing 
 namespace TG.MathEx.Easing
 {
-    public static class Exponential
+    /// <summary>
+    /// Provides quadratic easing functions
+    /// </summary>
+    public static class Quadratic
     {
 
         /// <summary>
@@ -16,7 +17,7 @@ namespace TG.MathEx.Easing
         /// <returns>Returns the value between the begin and change based on the time and duration.</returns>
         public static float EaseIn(float time, float begin, float change, float duration)
         {
-            return (time == 0) ? begin : change * (float)Math.Pow(2, 10 * (time / duration - 1)) + begin;
+            return change * (time /= duration) * time + begin;
         }
 
         /// <summary>
@@ -29,7 +30,7 @@ namespace TG.MathEx.Easing
         /// <returns>Returns the value between the begin and change based on the time and duration.</returns>
         public static float EaseOut(float time, float begin, float change, float duration)
         {
-            return (time == duration) ? begin + change : change * (-(float)Math.Pow(2, -10 * time / duration) + 1) + begin;
+            return -change * (time /= duration) * (time - 2) + begin;
         }
 
         /// <summary>
@@ -42,10 +43,8 @@ namespace TG.MathEx.Easing
         /// <returns>Returns the value between the begin and change based on the time and duration.</returns>
         public static float EaseInOut(float time, float begin, float change, float duration)
         {
-            if (time == 0) return begin;
-            if (time == duration) return begin + change;
-            if ((time /= duration / 2) < 1) return change / 2 * (float)Math.Pow(2, 10 * (time - 1)) + begin;
-            return change / 2 * (-(float)Math.Pow(2, -10 * --time) + 2) + begin;
+            if ((time /= duration / 2) < 1) return change / 2 * time * time + begin;
+            return -change / 2 * ((--time) * (time - 2) - 1) + begin;
         }
 
     }

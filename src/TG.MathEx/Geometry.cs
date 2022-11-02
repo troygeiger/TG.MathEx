@@ -56,7 +56,7 @@ namespace TG.MathEx
             float B1 = line1P1.X - line1P2.X;
             float A2 = line2P2.Y - line2P1.Y;
             float B2 = line2P1.X - line2P2.X;
-
+            
             float C1 = (A1 * line1P1.X) + (B1 * line1P1.Y);
             float C2 = (A2 * line2P1.X) + (B2 * line2P1.Y);
             float Delta = A1 * B2 - A2 * B1;
@@ -81,15 +81,15 @@ namespace TG.MathEx
         /// <param name="line2P1">The first point of the second line.</param>
         /// <param name="line2P2">The second point of the first line.</param>
         /// <returns>Returns true if the lines will, at some point, intersect; otherwise false.</returns>
-		public static PointD GetIntersection(PointD L1P1, PointD L1P2, PointD L2P1, PointD L2P2)
+		public static PointD GetIntersection(PointD line1P1, PointD line1P2, PointD line2P1, PointD line2P2)
         {
-            double A1 = L1P2.Y - L1P1.Y;
-            double B1 = L1P1.X - L1P2.X;
-            double A2 = L2P2.Y - L2P1.Y;
-            double B2 = L2P1.X - L2P2.X;
+            double A1 = line1P2.Y - line1P1.Y;
+            double B1 = line1P1.X - line1P2.X;
+            double A2 = line2P2.Y - line2P1.Y;
+            double B2 = line2P1.X - line2P2.X;
 
-            double C1 = (A1 * L1P1.X) + (B1 * L1P1.Y);
-            double C2 = (A2 * L2P1.X) + (B2 * L2P1.Y);
+            double C1 = (A1 * line1P1.X) + (B1 * line1P1.Y);
+            double C2 = (A2 * line2P1.X) + (B2 * line2P1.Y);
             double Delta = A1 * B2 - A2 * B1;
 
             if (Delta == 0)
@@ -743,6 +743,14 @@ namespace TG.MathEx
             return PlotPoint(currentAngle, center, distance);
         }
 
+        /// <summary>
+        /// Calculates the radius of a circle based on three points.
+        /// </summary>
+        /// <param name="A">A point on the circle.</param>
+        /// <param name="B">A point on the circle.</param>
+        /// <param name="C">A point on the circle.</param>
+        /// <param name="center">Outputs the calculated center of the circle.</param>
+        /// <param name="radius">Outputs the calculated radius of the circle.</param>
         public static void ThreePointCircle(Point A, Point B, Point C, out Point center, out double radius)
         {
             Point abMid = PlotPoint(GetAngle(A, B), A, Distance(A, B) / 2);
@@ -761,6 +769,14 @@ namespace TG.MathEx
             radius = Distance(center, A);
         }
 
+        /// <summary>
+        /// Calculates the radius of a circle based on three points.
+        /// </summary>
+        /// <param name="A">A point on the circle.</param>
+        /// <param name="B">A point on the circle.</param>
+        /// <param name="C">A point on the circle.</param>
+        /// <param name="center">Outputs the calculated center of the circle.</param>
+        /// <param name="radius">Outputs the calculated radius of the circle.</param>
         public static void ThreePointCircle(PointF A, PointF B, PointF C, out PointF center, out double radius)
         {
             PointF abMid = PlotPoint(GetAngle(A, B), A, Distance(A, B) / 2);
@@ -779,6 +795,14 @@ namespace TG.MathEx
             radius = Distance(center, A);
         }
 
+        /// <summary>
+        /// Calculates the radius of a circle based on three points.
+        /// </summary>
+        /// <param name="A">A point on the circle.</param>
+        /// <param name="B">A point on the circle.</param>
+        /// <param name="C">A point on the circle.</param>
+        /// <param name="center">Outputs the calculated center of the circle.</param>
+        /// <param name="radius">Outputs the calculated radius of the circle.</param>
         public static void ThreePointCircle(PointD A, PointD B, PointD C, out PointD center, out double radius)
         {
             PointD abMid = PlotPoint(GetAngle(A, B), A, Distance(A, B) / 2);

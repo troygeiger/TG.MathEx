@@ -1,8 +1,12 @@
 ﻿// These easing functions are based on the Java implementation at https://github.com/jesusgollonet/processing-penner-easing 
 namespace TG.MathEx.Easing
 {
-    public static class Bounce
+    /// <summary>
+    /// Provides quartic easing functions
+    /// </summary>
+    public static class Quartic
     {
+
         /// <summary>
         /// Easing function
         /// </summary>
@@ -13,7 +17,7 @@ namespace TG.MathEx.Easing
         /// <returns>Returns the value between the begin and change based on the time and duration.</returns>
         public static float EaseIn(float time, float begin, float change, float duration)
         {
-            return change - EaseOut(duration - time, 0, change, duration) + begin;
+            return change * (time /= duration) * time * time * time + begin;
         }
 
         /// <summary>
@@ -26,22 +30,7 @@ namespace TG.MathEx.Easing
         /// <returns>Returns the value between the begin and change based on the time and duration.</returns>
         public static float EaseOut(float time, float begin, float change, float duration)
         {
-            if ((time /= duration) < (1 / 2.75f))
-            {
-                return change * (7.5625f * time * time) + begin;
-            }
-            else if (time < (2 / 2.75f))
-            {
-                return change * (7.5625f * (time -= (1.5f / 2.75f)) * time + .75f) + begin;
-            }
-            else if (time < (2.5 / 2.75))
-            {
-                return change * (7.5625f * (time -= (2.25f / 2.75f)) * time + .9375f) + begin;
-            }
-            else
-            {
-                return change * (7.5625f * (time -= (2.625f / 2.75f)) * time + .984375f) + begin;
-            }
+            return -change * ((time = time / duration - 1) * time * time * time - 1) + begin;
         }
 
         /// <summary>
@@ -54,8 +43,9 @@ namespace TG.MathEx.Easing
         /// <returns>Returns the value between the begin and change based on the time and duration.</returns>
         public static float EaseInOut(float time, float begin, float change, float duration)
         {
-            if (time < duration / 2) return EaseIn(time * 2, 0, change, duration) * .5f + begin;
-            else return EaseOut(time * 2 - duration, 0, change, duration) * .5f + change * .5f + begin;
+            if ((time /= duration / 2) < 1) return change / 2 * time * time * time * time + begin;
+            return -change / 2 * ((time -= 2) * time * time * time - 2) + begin;
         }
+
     }
 }

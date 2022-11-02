@@ -1,7 +1,10 @@
 ﻿// These easing functions are based on the Java implementation at https://github.com/jesusgollonet/processing-penner-easing 
 namespace TG.MathEx.Easing
 {
-    public static class Quartic
+    /// <summary>
+    /// Provides quintic easing functions
+    /// </summary>
+    public static class Quintic
     {
 
         /// <summary>
@@ -14,7 +17,7 @@ namespace TG.MathEx.Easing
         /// <returns>Returns the value between the begin and change based on the time and duration.</returns>
         public static float EaseIn(float time, float begin, float change, float duration)
         {
-            return change * (time /= duration) * time * time * time + begin;
+            return change * (time /= duration) * time * time * time * time + begin;
         }
 
         /// <summary>
@@ -27,7 +30,7 @@ namespace TG.MathEx.Easing
         /// <returns>Returns the value between the begin and change based on the time and duration.</returns>
         public static float EaseOut(float time, float begin, float change, float duration)
         {
-            return -change * ((time = time / duration - 1) * time * time * time - 1) + begin;
+            return change * ((time = time / duration - 1) * time * time * time * time + 1) + begin;
         }
 
         /// <summary>
@@ -40,8 +43,8 @@ namespace TG.MathEx.Easing
         /// <returns>Returns the value between the begin and change based on the time and duration.</returns>
         public static float EaseInOut(float time, float begin, float change, float duration)
         {
-            if ((time /= duration / 2) < 1) return change / 2 * time * time * time * time + begin;
-            return -change / 2 * ((time -= 2) * time * time * time - 2) + begin;
+            if ((time /= duration / 2) < 1) return change / 2 * time * time * time * time * time + begin;
+            return change / 2 * ((time -= 2) * time * time * time * time + 2) + begin;
         }
 
     }

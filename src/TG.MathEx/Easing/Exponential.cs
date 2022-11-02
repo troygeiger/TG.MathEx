@@ -3,8 +3,12 @@
 // These easing functions are based on the Java implementation at https://github.com/jesusgollonet/processing-penner-easing 
 namespace TG.MathEx.Easing
 {
-    public static class Circular
+    /// <summary>
+    /// Provides exponential easing functions
+    /// </summary>
+    public static class Exponential
     {
+
         /// <summary>
         /// Easing function
         /// </summary>
@@ -15,7 +19,7 @@ namespace TG.MathEx.Easing
         /// <returns>Returns the value between the begin and change based on the time and duration.</returns>
         public static float EaseIn(float time, float begin, float change, float duration)
         {
-            return -change * ((float)Math.Sqrt(1 - (time /= duration) * time) - 1) + begin;
+            return (time == 0) ? begin : change * (float)Math.Pow(2, 10 * (time / duration - 1)) + begin;
         }
 
         /// <summary>
@@ -28,7 +32,7 @@ namespace TG.MathEx.Easing
         /// <returns>Returns the value between the begin and change based on the time and duration.</returns>
         public static float EaseOut(float time, float begin, float change, float duration)
         {
-            return change * (float)Math.Sqrt(1 - (time = time / duration - 1) * time) + begin;
+            return (time == duration) ? begin + change : change * (-(float)Math.Pow(2, -10 * time / duration) + 1) + begin;
         }
 
         /// <summary>
@@ -41,8 +45,10 @@ namespace TG.MathEx.Easing
         /// <returns>Returns the value between the begin and change based on the time and duration.</returns>
         public static float EaseInOut(float time, float begin, float change, float duration)
         {
-            if ((time /= duration / 2) < 1) return -change / 2 * ((float)Math.Sqrt(1 - time * time) - 1) + begin;
-            return change / 2 * ((float)Math.Sqrt(1 - (time -= 2) * time) + 1) + begin;
+            if (time == 0) return begin;
+            if (time == duration) return begin + change;
+            if ((time /= duration / 2) < 1) return change / 2 * (float)Math.Pow(2, 10 * (time - 1)) + begin;
+            return change / 2 * (-(float)Math.Pow(2, -10 * --time) + 2) + begin;
         }
 
     }

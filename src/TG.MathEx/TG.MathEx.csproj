@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0; netstandard2.1</TargetFrameworks>
+    <Description>Provides SizeD, PointD and RectangleD for double values. Also
+    adds other useful geometry functions and Robert Penner&apos;s easing
+    equations.</Description>
+    <Authors>Troy Geiger</Authors>
+    <Copyright>Copyright © Troy Geiger 2022</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/troygeiger/TG.MathEx</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/troygeiger/TG.MathEx</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <MinVerTagPrefix>v</MinVerTagPrefix>
+    <MinVerMinimumMajorMinor>2.0</MinVerMinimumMajorMinor>
+    <MinVerDefaultPreReleasePhase>preview</MinVerDefaultPreReleasePhase>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MinVer" Version="4.1.0">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+</Project>

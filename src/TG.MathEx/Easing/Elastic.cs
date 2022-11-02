@@ -1,8 +1,14 @@
-﻿// These easing functions are based on the Java implementation at https://github.com/jesusgollonet/processing-penner-easing 
+﻿using System;
+
+// These easing functions are based on the Java implementation at https://github.com/jesusgollonet/processing-penner-easing 
 namespace TG.MathEx.Easing
 {
-    public static class Back
+    /// <summary>
+    /// Provides elastic easing functions
+    /// </summary>
+    public static class Elastic
     {
+
         /// <summary>
         /// Easing function
         /// </summary>
@@ -13,8 +19,11 @@ namespace TG.MathEx.Easing
         /// <returns>Returns the value between the begin and change based on the time and duration.</returns>
         public static float EaseIn(float time, float begin, float change, float duration)
         {
-            float s = 1.70158f;
-            return change * (time /= duration) * time * ((s + 1) * time - s) + begin;
+            if (time == 0) return begin; if ((time /= duration) == 1) return begin + change;
+            float p = duration * .3f;
+            float a = change;
+            float s = p / 4;
+            return -(a * (float)Math.Pow(2, 10 * (time -= 1)) * (float)Math.Sin((time * duration - s) * (2 * (float)Math.PI) / p)) + begin;
         }
 
         /// <summary>
@@ -24,11 +33,16 @@ namespace TG.MathEx.Easing
         /// <param name="begin">The beginning value of the property.</param>
         /// <param name="change">The change between the beginning and destination value of the property</param>
         /// <param name="duration">The total time of the tween</param>
-        /// <param name="s">I'm not sure what this parameter does.</param>
+        /// <param name="a">I'm not sure what this parameter does.</param>
+        /// <param name="p">I'm not sure what this parameter does.</param>
         /// <returns>Returns the value between the begin and change based on the time and duration.</returns>
-        public static float EaseIn(float time, float begin, float change, float duration, float s)
+        public static float EaseIn(float time, float begin, float change, float duration, float a, float p)
         {
-            return change * (time /= duration) * time * ((s + 1) * time - s) + begin;
+            float s;
+            if (time == 0) return begin; if ((time /= duration) == 1) return begin + change;
+            if (a < Math.Abs(change)) { a = change; s = p / 4; }
+            else { s = p / (2 * (float)Math.PI) * (float)Math.Asin(change / a); }
+            return -(a * (float)Math.Pow(2, 10 * (time -= 1)) * (float)Math.Sin((time * duration - s) * (2 * Math.PI) / p)) + begin;
         }
 
         /// <summary>
@@ -41,7 +55,11 @@ namespace TG.MathEx.Easing
         /// <returns>Returns the value between the begin and change based on the time and duration.</returns>
         public static float EaseOut(float time, float begin, float change, float duration)
         {
-            return EaseOut(time, begin, change, duration, 1.70158f);
+            if (time == 0) return begin; if ((time /= duration) == 1) return begin + change;
+            float p = duration * .3f;
+            float a = change;
+            float s = p / 4;
+            return (a * (float)Math.Pow(2, -10 * time) * (float)Math.Sin((time * duration - s) * (2 * (float)Math.PI) / p) + change + begin);
         }
 
         /// <summary>
@@ -51,11 +69,16 @@ namespace TG.MathEx.Easing
         /// <param name="begin">The beginning value of the property.</param>
         /// <param name="change">The change between the beginning and destination value of the property</param>
         /// <param name="duration">The total time of the tween</param>
-        /// <param name="s">I'm not what this parameter does.</param>
+        /// <param name="p">I'm not sure what this parameter does.</param>
+        /// <param name="a">I'm not sure what this parameter does.</param>
         /// <returns>Returns the value between the begin and change based on the time and duration.</returns>
-        public static float EaseOut(float time, float begin, float change, float duration, float s)
+        public static float EaseOut(float time, float begin, float change, float duration, float a, float p)
         {
-            return change * ((time = time / duration - 1) * time * ((s + 1) * time + s) + 1) + begin;
+            float s;
+            if (time == 0) return begin; if ((time /= duration) == 1) return begin + change;
+            if (a < Math.Abs(change)) { a = change; s = p / 4; }
+            else { s = p / (2 * (float)Math.PI) * (float)Math.Asin(change / a); }
+            return (a * (float)Math.Pow(2, -10 * time) * (float)Math.Sin((time * duration - s) * (2 * (float)Math.PI) / p) + change + begin);
         }
 
         /// <summary>
@@ -68,7 +91,12 @@ namespace TG.MathEx.Easing
         /// <returns>Returns the value between the begin and change based on the time and duration.</returns>
         public static float EaseInOut(float time, float begin, float change, float duration)
         {
-            return EaseInOut(time, begin, change, duration, 1.70158f);
+            if (time == 0) return begin; if ((time /= duration / 2) == 2) return begin + change;
+            float p = duration * (.3f * 1.5f);
+            float a = change;
+            float s = p / 4;
+            if (time < 1) return -.5f * (a * (float)Math.Pow(2, 10 * (time -= 1)) * (float)Math.Sin((time * duration - s) * (2 * (float)Math.PI) / p)) + begin;
+            return a * (float)Math.Pow(2, -10 * (time -= 1)) * (float)Math.Sin((time * duration - s) * (2 * (float)Math.PI) / p) * .5f + change + begin;
         }
 
         /// <summary>
@@ -78,12 +106,17 @@ namespace TG.MathEx.Easing
         /// <param name="begin">The beginning value of the property.</param>
         /// <param name="change">The change between the beginning and destination value of the property</param>
         /// <param name="duration">The total time of the tween</param>
-        /// <param name="s">I'm not sure what this parameter does.</param>
+        /// <param name="a">I'm not sure what this parameter does.</param>
+        /// <param name="p">I'm not sure what this parameter does.</param>
         /// <returns>Returns the value between the begin and change based on the time and duration.</returns>
-        public static float EaseInOut(float time, float begin, float change, float duration, float s)
+        public static float EaseInOut(float time, float begin, float change, float duration, float a, float p)
         {
-            if ((time /= duration / 2) < 1) return change / 2 * (time * time * (((s *= (1.525f)) + 1) * time - s)) + begin;
-            return change / 2 * ((time -= 2) * time * (((s *= (1.525f)) + 1) * time + s) + 2) + begin;
+            float s;
+            if (time == 0) return begin; if ((time /= duration / 2) == 2) return begin + change;
+            if (a < Math.Abs(change)) { a = change; s = p / 4; }
+            else { s = p / (2 * (float)Math.PI) * (float)Math.Asin(change / a); }
+            if (time < 1) return -.5f * (a * (float)Math.Pow(2, 10 * (time -= 1)) * (float)Math.Sin((time * duration - s) * (2 * (float)Math.PI) / p)) + begin;
+            return a * (float)Math.Pow(2, -10 * (time -= 1)) * (float)Math.Sin((time * duration - s) * (2 * (float)Math.PI) / p) * .5f + change + begin;
         }
     }
 }
